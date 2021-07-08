@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link id="stylesheet" rel="stylesheet" type="text/css" href="assets/css/style-dark.css">
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+  <title>Resolve Marker Generator</title>
+  <script>
+    window.$ = window.jQuery = require('./assets/js/jquery-1.10.2.min');
+
+  </script>
+  <script src="assets/js/jquery-1.10.2.min.js"></script>
+  <script src="assets/js/wavesurfer.min.js"></script>
+</head>
+
+<body id="body">
+  <nav>
+    <div class="nav-box">
+      <span class="title">Resolve Marker Generator</span>
+      <img class="logo" src="assets/img/logo.svg">
+      <div class="menu">
+        <img id="reload" src="assets/img/reload.svg">
+        <img id="help" src="assets/img/question.svg">
+        <img id="settings" src="assets/img/settings.svg">
+      </div>
+    </div>
+  </nav>
+  <div class="content">
+    <div class="info">
+      <p id="song-name" class="song-name">⠀</p>
+      <p id="error-message-2" class="song-name error-message-2">⠀</p>
+      <p id="time" class="time"><span id="minutes">00</span>:<span id="seconds">00</span>,<span id="tens">00</span></p>
+    </div>
+    <div class="record">
+      <label for="input" class="file-upload" id="upload-audio">Upload Audio</label>
+      <input type="file" id="input" accept="audio/*,video/*">
+      <audio id="sound" class="sound" onError="this.onerror=null;this.src='error';"></audio>
+      <br>
+      <button onclick="playOrPauseSong()" id="play" class="playorpause"><img class="playorpauseimg" src="assets/img/record-icon.svg"></button>
+      <div class="seek-bar" id="seek-bar">
+        <div class="markers" id="markers"></div>
+        <div class="fill" id="fill"></div>
+        <div class="handle" id="handle"></div>
+        <div id="waveform" class="waveform"></div>
+      </div>
+    </div>
+
+    <div class="generate">
+      <div class="generate-box">
+        <img class="logo-icon" id="logo-icon" src="assets/img/logo.svg">
+        <img class="download-icon" id="download-icon" src="assets/img/down-arrow.svg" onclick="downloadXml()">
+        <img class="loading-icon" id="loading-icon" src="assets/img/loading.svg"><br>
+        <span class="progress-text" id="progress-text"></span><br>
+        <span class="progress-text error-message" id="error-message"></span><br>
+        <div id="download-box">
+          <button class="btn download-btn" id="download-btn">Generate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- HELP MODAL-->
+  <div id="help-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2 id="help-title">Importing the .edl file into Davinci Resolve</h2>
+      </div>
+      <div class="modal-body">
+        <p id="help-h1"><strong>Markers can be placed with the keyboard buttons "1", "2" and "3 for blue, red and green marker.</strong></p>
+        <p class="helptext" id="help-l1"><strong>1. </strong>Put the exact Audio or Video, with which you recorded the markers, into the Media Pool.</p>
+        <img class="helpimg" src="assets/img/helpimg-1.png">
+        <p class="helptext" id="help-l2"><strong>2. </strong>IMPORTANT: Set the Timeline frame rate to the frame rate you selected in the settings (The standart is 50).</p>
+        <img class="helpimg" src="assets/img/helpimg-2.png">
+        <p class="helptext" id="help-l3"><strong>3. </strong>In the Media Pool, right click on "Timeline 1", select Timelines > Import > Timeline Markers from EDL. Then select the .edl file you previously created. It will take a short time until all markers are loaded.</p>
+        <img class="helpimg" src="assets/img/helpimg-3.png">
+      </div>
+      <div class="modal-footer">
+        <h3></h3>
+      </div>
+    </div>
+  </div>
+  <!---->
+  <!-- SETTINGS MODAL-->
+  <div id="settings-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="close2" class="close">&times;</span>
+        <h2 id="lang-settings">Settings</h2>
+      </div>
+      <div class="modal-body">
+        <div class="settings-box">
+          <h3 id="lang-theme">Theme</h3>
+          <div class="theme-slider">
+            <label class="switch">
+              <input id="theme-slider" type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="theme-icons">
+            <img src="assets/img/moon-phase-outline.svg">
+            <img src="assets/img/sun.svg">
+          </div>
+        </div>
+        <div class="settings-box">
+          <h3 id="lang-language">Language</h3>
+          <div class="language-select">
+            <select id="language" class="language-dropdown">
+              <option class="translate" id="de" value="1">Deutsch</option>
+              <option class="translate" id="en" value="2">English</option>
+            </select>
+          </div>
+        </div>
+        <div class="settings-box">
+          <h3 id="lang-framerate">Framerate</h3>
+          <div class="framerate-select">
+            <select id="framerate" class="framerate-dropdown">
+              <option value="1" id="25">25</option>
+              <option value="2" id="50" selected>50</option>
+            </select>
+          </div>
+        </div>
+        <div class="settings-box">
+          <h3 id="lang-playbar">Playbar Length</h3>
+          <div class="length-select">
+            <input type="button" id="sub" class="subbutton" value="-" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+            <input type="number" id="length-number" class="length-number" step="5" min="50" max="1500" value="800">
+            <input type="button" id="add" class="addbutton" value="+" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+          </div>
+        </div>
+        <div class="warning-box" id="warning-box">
+          <div>
+            <img src="assets/img/warning.svg">
+            <span id="langWarning">Warning! The program must be reloaded in order to use this setting</span>
+            <a id="warning-reload">Reload now</a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/language/en-US.js"></script>
+  <script src="assets/js/language/de-DE.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/FileSaver.min.js"></script>
+  <script src="assets/js/update.js"></script>
+</body>
+
+</html>

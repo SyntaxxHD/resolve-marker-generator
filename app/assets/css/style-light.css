@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+body {
+  background-color: #ecf0f1;
+}
+
+.song-name {
+  color: #000;
+}
+
+.time {
+  color: darkgray;
+}
+
+.generate-box {
+  background-color: #dde6e8;
+}
+
+.progress-text {
+  color: #000;
+}
+
+.modal-body {
+  background: #ecf0f1;
+  color: #000;
+}
+
+.modal-body p {
+  color: #000;
+}
+
+.modal-footer {
+  background: #ecf0f1;
+}
+
+.message-modal-body {
+  background: #ecf0f1;
+  color: #000;
+}
+
+.message-modal-body p {
+  color: #000;
+}
+
+.message-modal-footer {
+  background: #ecf0f1;
+}
+
+
+.settings-box {
+  background-color: #dde6e8;
+}
+
+.language-dropdown {
+  background-color: #fff;
+  color: #000;
+}
+
+.language-dropdown option {
+  color: #000;
+}
+
+.framerate-dropdown {
+  background-color: #fff;
+  color: #000;
+}
+
+.framerate-dropdown option {
+  color: #000;
+}
+
+.subbutton {
+  background-color: #fff;
+  color: #000;
+}
+
+.addbutton {
+  background-color: #fff;
+  color: #000;
+}
+
+.length-number {
+  background-color: #fff;
+  color: #000;
+}
