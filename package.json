@@ -1,6 +1,6 @@
 {
   "name": "resolve-marker-generator",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "A software that creates a with a song time matched edl-file for Davinci Resolve Markers",
   "main": "main.js",
   "devDependencies": {
