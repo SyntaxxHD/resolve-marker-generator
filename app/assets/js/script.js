@@ -30,6 +30,7 @@ var buttonStop = document.getElementById('button-stop');
 var buttonReset = document.getElementById('button-reset');
 var Interval;
 var version;
+var site = 'main';
 
 //Seite kann nur mit index.html?startFromElectron. Dies soll verhindern man die HTML Datei in den Programmdateien öffnen kann.
 qs = qs.substr(qs.indexOf("?") + 1);

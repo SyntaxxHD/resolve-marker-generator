@@ -1,4 +1,3 @@
-const prompt = require('electron-prompt');
 const { ipcRenderer, remote } = require('electron');
 const dialog   = remote.dialog;
 

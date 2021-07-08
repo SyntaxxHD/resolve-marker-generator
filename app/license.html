@@ -260,7 +260,7 @@
 <body>
   <div class="align lc-main" id="lc-main">
     <img src="assets/img/logo.svg" style="width: 300px;">
-    <h1>Enter Your License</h1>
+    <h1 id="license-title">Enter Your License</h1>
     <div class="grid">
       <form action="javascript:setLicense()" method="POST" class="form login">
         <div class="form__field">
@@ -277,8 +277,6 @@
           <img src="assets/img/internet-loading.svg" class="internet-loader" id="internet-loader" style="display: none;">
         </div>
         <p id="license-error"></p>
-        <!--p id="license-error-02">Couldn't find valid license key. Check for internet connection</p>
-        <p id="license-error-03">Saved license key does not exist or has already expired. Please enter again</p-->
       </form>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" class="icons">
@@ -294,9 +292,12 @@
     </svg>
   </div>
 
+  <script src="assets/js/language/en-US.js"></script>
+  <script src="assets/js/language/de-DE.js"></script>
   <script>
     const Store = require('electron-store');
     const store = new Store();
+    var site = 'license';
 
     qs = window.location.href;
     qs = qs.substr(qs.indexOf("?") + 1);
@@ -309,6 +310,24 @@
     if (qs == version) {}
     else {
       window.location.href="about:blank";
+    }
+
+    window.onload = detectLanguage();
+
+    function detectLanguage() {
+      var visit;
+      if (store.has('visit')) {
+        visit = store.get('visit');
+        parseInt(visit);
+        visit++;
+        store.set('visit', visit);
+        var lang = store.get('lang');
+        if (lang == 'de-DE') {
+          setGerman();
+        } else {
+          setEnglish();
+        }
+      }
     }
 
     if(store.has('license') == true) {
@@ -324,7 +343,7 @@
       document.getElementById('internet-loader').style.display = 'block';
       document.getElementById('internet-loader').style.pointerEvents = 'none';
       (async () => {
-        var rawResponse = await fetch('http://localhost:3000/license', {
+        var rawResponse = await fetch('https://syntaxx-license.herokuapp.com/license', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -341,7 +360,7 @@
               window.location.href = './index.html?' + process.versions.electron;
             }
             else {
-              document.getElementById('license-error').innerHTML = 'Can not establish connection to the server. If this error occurs longer, try to upadate the software';
+              document.getElementById('license-error').innerHTML = langNoServerConnection;
               document.getElementById('license-error').classList.add('show-error');
             }
           }
@@ -350,7 +369,7 @@
               window.location.href = './index.html?' + process.versions.electron;
             }
             else {
-              document.getElementById('license-error').innerHTML = 'You are not connected to the internet. Please establish an internet connection to actrivate the license.';
+              document.getElementById('license-error').innerHTML = langNoInternet;
               document.getElementById('license-error').classList.add('show-error');
             }
           }
@@ -367,7 +386,7 @@
               store.set('valid', true);
             }
             else if(data.valid == false) {
-              document.getElementById('license-error').innerHTML = 'The license key is invalid. Please check for any typing errors.';
+              document.getElementById('license-error').innerHTML = langInvalidLicense;
               document.getElementById('license-error').classList.add('show-error');
             }
           }
