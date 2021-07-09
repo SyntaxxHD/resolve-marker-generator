@@ -13,10 +13,9 @@ ipcRenderer.on('update_downloaded', () => {
    dialog.showMessageBox(
     win,
     {
-      message: "Test",
+      message: "Update Downloaded. It will be installed on restart. Restart now?",
       buttons: ["Yes", "No"],
-      defaultId: 0, // bound to buttons array
-      cancelId: 1 // bound to buttons array
+      defaultId: 0,
     })
     .then(result => {
       if (result.response === 0) {

@@ -7,10 +7,13 @@ var langSupportedLength = 'Only audio files with a length of up to one hour are 
 var langInvalidLicense = 'The license key is invalid. Please check for any typing errors.';
 var langNoInternet = 'You are not connected to the internet. Please establish an internet connection to actrivate the license.';
 var langNoServerConnection = 'Can not establish connection to the server. If this error occurs longer, try to upadate the software.';
+var langInUse = 'Another device is currently using the program. Please close it, as only one program can use the license at the same time.'
 
 //Ändert alles auf Englisch
 function setEnglish() {
-  document.getElementById('en').selected = 'selected';
+  if(document.getElementById('en')) {
+    document.getElementById('en').selected = 'selected';
+  }
   langDownload = 'Download';
   langGenerating = 'Generating... ';
   langGenerated = 'generated';

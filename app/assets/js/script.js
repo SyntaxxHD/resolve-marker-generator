@@ -536,10 +536,12 @@ document.getElementById('warning-reload').addEventListener('click', function () 
   location.reload();
 });
 
-//Ändert die Größe der Programms wenn die Bildschirmbreite unter 1400px ist
-window.onload = zoom;
-function zoom() {
-  if (screen.width <= 1400) {
-    document.getElementById('body').style.zoom = '0.8';
+var socket = io('http://syntaxx-license.herokuapp.com')
+
+socket.on("connect", () => {
+  if(store.has('license') && store.get('activated') == true) {
+    socket.emit('currentUsing', store.get('license'), socket.id)
+    console.log('did it')
   }
-}
+  
+})

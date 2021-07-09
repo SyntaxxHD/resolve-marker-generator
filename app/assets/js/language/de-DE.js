@@ -12,6 +12,7 @@ function setGerman() {
   langInvalidLicense = 'Der Lizenzschlüssel ist ungültig. Bitte überprüfe, ob Tippfehler vorliegen.';
   langNoInternet = 'Sie sind nicht mit dem Internet verbunden. Bitte stellen Sie eine Internetverbindung her, um die Lizenz zu aktivieren.';
   langNoServerConnection = 'Verbindung zum Server kann nicht hergestellt werden. Wenn dieser Fehler länger auftritt, versuchen Sie, die Software zu aktualisieren.';
+  langInUse = 'Ein anderes Gerät benutzt das Programm gerade. Bitte schließen sie es, da nur ein Programm gleichzeigt die Lizenz nutzen kann.'
   if(site == 'main') {
     document.getElementById("upload-audio").innerHTML = "Audio hochladen";
     document.getElementById("download-btn").innerHTML = "Generieren";
