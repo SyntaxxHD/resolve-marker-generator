@@ -7,7 +7,9 @@ var langSupportedLength = 'Only audio files with a length of up to one hour are 
 var langInvalidLicense = 'The license key is invalid. Please check for any typing errors.';
 var langNoInternet = 'You are not connected to the internet. Please establish an internet connection to actrivate the license.';
 var langNoServerConnection = 'Can not establish connection to the server. If this error occurs longer, try to upadate the software.';
-var langInUse = 'Another device is currently using the program. Please close it, as only one program can use the license at the same time.'
+var langInUse = 'Another device is currently using the program. Please close it, as only one program can use the license at the same time.';
+var langUpdateAvailable = 'A new update is available. Downloading now...';
+var langUpdateDone = 'Update Downloaded. It will be installed on restart. Restart now?';
 
 //Ändert alles auf Englisch
 function setEnglish() {
@@ -23,6 +25,9 @@ function setEnglish() {
   langInvalidLicense = 'The license key is invalid. Please check for any typing errors.';
   langNoInternet = 'You are not connected to the internet. Please establish an internet connection to actrivate the license.';
   langNoServerConnection = 'Can not establish connection to the server. If this error occurs longer, try to upadate the software.';
+  langInUse = 'Another device is currently using the program. Please close it, as only one program can use the license at the same time.';
+  langUpdateAvailable = 'A new update is available. Downloading now...';
+  langUpdateDone = 'Update Downloaded. It will be installed on restart. Restart now?';
   if(site == 'main') {
     document.getElementById("upload-audio").innerHTML = "Upload Audio";
     document.getElementById("download-btn").innerHTML = "Generate";

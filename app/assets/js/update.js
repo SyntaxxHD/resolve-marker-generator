@@ -5,7 +5,7 @@ let win = remote.getCurrentWindow()
 
 ipcRenderer.on('update_available', () => {
   ipcRenderer.removeAllListeners('update_available');
-  alert('A new update is available. Downloading now...');
+  alert(langUpdateAvailable);
 });
 
 ipcRenderer.on('update_downloaded', () => {
@@ -13,7 +13,7 @@ ipcRenderer.on('update_downloaded', () => {
    dialog.showMessageBox(
     win,
     {
-      message: "Update Downloaded. It will be installed on restart. Restart now?",
+      message: langUpdateDone,
       buttons: ["Yes", "No"],
       defaultId: 0,
     })

@@ -541,7 +541,5 @@ var socket = io('http://syntaxx-license.herokuapp.com')
 socket.on("connect", () => {
   if(store.has('license') && store.get('activated') == true) {
     socket.emit('currentUsing', store.get('license'), socket.id)
-    console.log('did it')
   }
-  
 })

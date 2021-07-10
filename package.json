@@ -21,7 +21,7 @@
       "uninstallerIcon": "build/icon.ico"
     },
     "asar": true,
-    "icon": "build/icon.ico"
+    "icon": "app/assets/img/icon.ico"
   },
   "repository": {
     "type": "git",

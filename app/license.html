@@ -346,7 +346,7 @@
       document.getElementById('internet-loader').style.display = 'block';
       document.getElementById('internet-loader').style.pointerEvents = 'none';
       (async () => {
-        var rawResponse = await fetch('http://syntaxx-license.herokuapp.com' + '/license', {
+        var rawResponse = await fetch('http://syntaxx-license.herokuapp.com/license/resolve-marker-generator', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
