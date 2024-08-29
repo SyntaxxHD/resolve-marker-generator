@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 body {
   margin: 0px;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   user-select: none;
   overflow: hidden;
 }
@@ -36,7 +36,7 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
@@ -134,12 +134,7 @@ input[type="number"] {
   text-align: center;
   line-height: 100px;
   background: rgb(120, 204, 211);
-  background: linear-gradient(
-    90deg,
-    rgba(120, 204, 211, 1) 0%,
-    rgba(242, 124, 124, 1) 50%,
-    rgba(220, 231, 117, 1) 100%
-  );
+  background: linear-gradient(90deg, rgba(120, 204, 211, 1) 0%, rgba(242, 124, 124, 1) 50%, rgba(220, 231, 117, 1) 100%);
 }
 
 .title {
@@ -206,7 +201,7 @@ input[type="number"] {
   justify-content: center;
 }
 
-input[type="file"] {
+input[type='file'] {
   display: none;
 }
 
@@ -222,7 +217,7 @@ input[type="file"] {
   background-color: #4e6e91;
   box-shadow: 0px 2px 0px 0px #3b546e;
   border: 0px solid;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -359,7 +354,7 @@ input[type="file"] {
   background-color: #4e6e91;
   box-shadow: 0px 5px 0px 0px #3b546e;
   border: 0px solid;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   cursor: pointer;
 }
 
@@ -571,7 +566,7 @@ input[type="file"] {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 26px;
   width: 26px;
   left: 4px;
