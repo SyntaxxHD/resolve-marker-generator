@@ -86,7 +86,7 @@ function loadFilename(e) {
       lengthError = false
     } else {
       songName.innerHTML = '⠀'
-      errorMessage2.innerHTML = langSupportedLength
+      errorMessage2.innerHTML = window.langSupportedLength
       lengthError = true
     }
   })
@@ -120,7 +120,7 @@ function playOrPauseSong() {
   if (loaded === true) {
     if (wavesurfer.isPlaying() === false) {
       if (document.getElementById('sound').src === '' || lengthError === true) {
-        document.getElementById('error-message-2').innerHTML = langSelectAudio
+        document.getElementById('error-message-2').innerHTML = window.langSelectAudio
         return
       }
       wavesurfer.play() // Start the song
@@ -223,7 +223,7 @@ function setMarker(color) {
   const innerHTML = markers.innerHTML
 
   if (document.getElementById('sound').src == '') {
-    document.getElementById('error-message-2').innerHTML = langSelectAudio // Gibt eine Fehlermeldung aus wenn noch kein Song ausgewählt wurde
+    document.getElementById('error-message-2').innerHTML = window.langSelectAudio // Gibt eine Fehlermeldung aus wenn noch kein Song ausgewählt wurde
     return
   }
 
@@ -268,11 +268,11 @@ document.getElementById('download-btn').addEventListener('click', function () {
       if (progress >= 100) {
         clearInterval(id)
         count = 0
-        elem.innerHTML = progress + '% ' + langGenerated
+        elem.innerHTML = progress + '% ' + window.langGenerated
         generateEDL()
       } else {
         progress++
-        elem.innerHTML = langGenerating + progress + '%'
+        elem.innerHTML = window.langGenerating + progress + '%'
       }
     }
   }
@@ -288,7 +288,7 @@ function generateEDL() {
   const downloadBox = document.getElementById('download-box')
   if (document.getElementById('markers').innerHTML == '') {
     errorMessage.innerHTML = ''
-    errorMessage.innerHTML = langSetMarker
+    errorMessage.innerHTML = window.langSetMarker
     loadingIcon.style.display = 'none'
     logoIcon.style.display = 'inline-flex'
     progressText.innerHTML = ''
@@ -298,7 +298,7 @@ function generateEDL() {
 
   loadingIcon.style.display = 'none'
   downloadIcon.style.display = 'inline-flex'
-  downloadBox.innerHTML = '<button class="btn download-btn" onclick="downloadEDL()">' + langDownload + '</button>' // Generierungs Knopf wird auf Download geändert
+  downloadBox.innerHTML = '<button class="btn download-btn" onclick="downloadEDL()">' + window.langDownload + '</button>' // Generierungs Knopf wird auf Download geändert
 }
 
 document.getElementById('download-icon').addEventListener('click', function () {
